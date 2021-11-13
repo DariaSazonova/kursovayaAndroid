@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="booksShop8.Views.viewBook"
+             x:Name="ContentP">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout  >
+                <Image x:Name="ImageBook" HeightRequest="400" Grid.Column="0"/>
+                <Label  x:Name="LabelBookName" FontSize="Medium" />
+                <Label x:Name="LabelAuthor" FontSize="Medium" />
+                <Label x:Name="LabelBookCost" FontSize="Medium" Text="{Binding bookCost, StringFormat='Цена{0} ₽' }"/>
+                <Button CornerRadius="10" x:Name="ButtonBasket" HeightRequest="60" WidthRequest="60" Text="Добавить в корзину"/>
+                <Label x:Name="LabelBookDescription" Text="{Binding bookDescription, StringFormat='Описание: {0}' }"/>
+                <Label x:Name="LabelGenre" Text="{Binding genre, StringFormat='Жанр: {0}' }"/>
+            <!--что-то для оценки-->
+
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

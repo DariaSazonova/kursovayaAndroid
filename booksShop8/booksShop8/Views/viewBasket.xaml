@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="booksShop8.Views.viewBasket" Title="Корзина">
+    <ContentPage.Content>
+        <StackLayout >
+            <Label HorizontalOptions="Center" VerticalOptions="Center" VerticalTextAlignment="Center" IsVisible="False" x:Name="NullLabelBasket" Text="Здесь пусто" FontSize="Large"/>
+            <ScrollView>
+            <ListView x:Name="BasketList" ItemsSource="{Binding }"  HasUnevenRows="True"  ItemTapped="BasketList_ItemTapped" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell >
+                            <ViewCell.View>
+                                <Grid  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                        <ColumnDefinition Width="130"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <Label  Grid.Column="0" FontAttributes="Bold" Grid.Row="0" Margin="10,15,0,0" VerticalTextAlignment="Start"  Text="{Binding bookName}" FontSize="18" />
+                                    <Label  Grid.Column="0" FontAttributes="Italic"  Grid.Row="1" Margin="10,0,0,7" VerticalTextAlignment="End"  Text="{Binding author}"  />
+                                    <Label  VerticalOptions="End" Grid.Column="0" Grid.Row="2" Margin="40,0,0,0" VerticalTextAlignment="Center" Text="{Binding bookCost, StringFormat='{0} ₽' }" FontSize="20"  />
+                                    <Label  HorizontalOptions="Center" Grid.Column="1" Grid.Row="1" FontAttributes="Bold" FontSize="20" Text="{Binding Quantities}"/>
+                                    <Button CornerRadius="100" Margin="5"  AutomationId="{Binding bookId}" x:Name="ButtonPlus" Text="+" Grid.Column="1" Grid.Row="0" Clicked="ButtonPlus_Clicked"/>
+                                    <Button AutomationId="{Binding bookId}" Margin="5"  CornerRadius="100" x:Name="ButtonMin" Text="-" Grid.Column="1" Grid.Row="2" Clicked="ButtonMin_Clicked" />
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            </ScrollView>
+            <Button Margin="10" Padding="-20"  CornerRadius="30" Text="Оформить заказ"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

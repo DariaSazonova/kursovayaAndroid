@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="booksShop8.Views.Catalog"
+             Title="Каталог">
+    <ContentPage.Content>
+        <StackLayout >
+            <SearchBar TextChanged="SearchBook_TextChanged" x:Name="SearchBook"  Margin="-15,0,0,0" />
+            
+            <ListView x:Name="BooksList" ItemsSource="{Binding }"  HasUnevenRows="True"  ItemTapped="BooksList_ItemTapped" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell >
+                            <ViewCell.View>
+                                <Grid  >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
+                                        <ColumnDefinition Width="130"/>
+                                        
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <!--<RowDefinition Height="Auto"></RowDefinition>-->
+                                    </Grid.RowDefinitions>
+                                   
+                                    <Label  Grid.Column="0" FontAttributes="Bold" Grid.Row="0" Margin="10,15,0,0" VerticalTextAlignment="Start"  Text="{Binding bookName}" FontSize="18" />
+                                    <Label  Grid.Column="0" FontAttributes="Italic"  Grid.Row="1" Margin="10,0,0,7" VerticalTextAlignment="End"  Text="{Binding author}"  />
+                                    <Label VerticalOptions="End" Grid.Column="1" Grid.Row="0" Margin="40,0,0,0" VerticalTextAlignment="Center" Text="{Binding bookCost, StringFormat='{0} ₽' }" FontSize="20"  />
+                                    
+                                    <Button AutomationId="{Binding bookId}" Clicked="ButtonBasket_Clicked" Text="В корзину" Padding="-20" HeightRequest="30" WidthRequest="50" Grid.Row="1"  Grid.Column="1" Margin="10"/>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
