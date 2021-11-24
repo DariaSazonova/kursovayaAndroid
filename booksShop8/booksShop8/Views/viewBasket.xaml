@@ -16,15 +16,17 @@
                                         <ColumnDefinition Width="250"></ColumnDefinition>
                                         <ColumnDefinition Width="130"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="50"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="50"></RowDefinition>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="50"></RowDefinition>
                                     </Grid.RowDefinitions>
-
-                                    <Label  Grid.Column="0" FontAttributes="Bold" Grid.Row="0" Margin="10,15,0,0" VerticalTextAlignment="Start"  Text="{Binding bookName}" FontSize="18" />
-                                    <Label  Grid.Column="0" FontAttributes="Italic"  Grid.Row="1" Margin="10,0,0,7" VerticalTextAlignment="End"  Text="{Binding author}"  />
-                                    <Label  VerticalOptions="End" Grid.Column="0" Grid.Row="2" Margin="40,0,0,0" VerticalTextAlignment="Center" Text="{Binding bookCost, StringFormat='{0} ₽' }" FontSize="20"  />
+                                        <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+                                            <Label FontFamily="Nunito-Regular" FontAttributes="Bold"  Margin="10,15,0,0" VerticalTextAlignment="Start"  Text="{Binding bookName}" FontSize="18" />
+                                            <Label   FontFamily="Nunito-SemiBoldItalic" FontAttributes="Italic"  Grid.Row="1" Margin="10,0,0,7" VerticalTextAlignment="End"  Text="{Binding author}"  />
+                                            <Label  VerticalOptions="End" Margin="40,0,0,0" VerticalTextAlignment="Center" Text="{Binding bookCost, StringFormat='{0} ₽' }" FontSize="20"  />
+                                        </StackLayout>
+                                        
                                     <Label  HorizontalOptions="Center" Grid.Column="1" Grid.Row="1" FontAttributes="Bold" FontSize="20" Text="{Binding Quantities}"/>
                                     <Button CornerRadius="100" Margin="5"  AutomationId="{Binding bookId}" x:Name="ButtonPlus" Text="+" Grid.Column="1" Grid.Row="0" Clicked="ButtonPlus_Clicked"/>
                                     <Button AutomationId="{Binding bookId}" Margin="5"  CornerRadius="100" x:Name="ButtonMin" Text="-" Grid.Column="1" Grid.Row="2" Clicked="ButtonMin_Clicked" />
@@ -35,7 +37,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             </ScrollView>
-            <Button Margin="10" Padding="-20"  CornerRadius="30" Text="Оформить заказ"/>
+            <Button Clicked="Button_ClickedOrder" Margin="10" Padding="-20"  CornerRadius="30" Text="Оформить заказ"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

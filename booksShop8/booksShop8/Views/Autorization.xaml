@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="booksShop8.Views.Autorization"
+             Title="Авторизация">
+    <ContentPage.Content>
+        <StackLayout x:Name="Stack1" >
+            <Label  Margin="0,50,0,0" IsVisible="false" x:Name="LabLog" Text="Логин" FontSize="25" VerticalOptions="Start"  HorizontalOptions="CenterAndExpand" />
+            <Entry  IsVisible="false"  TextColor="Black" Background="White"  x:Name="loginEntry" Keyboard="Email" VerticalOptions="Start"  HorizontalOptions="CenterAndExpand"  WidthRequest="300"/>
+            <Label  IsVisible="false" x:Name="LabPass" Text="Пароль" FontSize="25" VerticalOptions="Start"  HorizontalOptions="CenterAndExpand" />
+            <Entry  IsVisible="false" TextColor="Black" Background="White" x:Name="passwordEntry" IsPassword="True"   VerticalOptions="Start"  HorizontalOptions="CenterAndExpand"  WidthRequest="300"  />
+            <Button  IsVisible="false"  x:Name="InButton" Clicked="InButton_ClickedAsync"  TextColor="Black" BackgroundColor="White"  CornerRadius="100" Text="Вход" HorizontalOptions="Center" />
+            <Button  IsVisible="false" x:Name="RegButton" TextColor="Black"  BackgroundColor="White" CornerRadius="100" Text="Регистрация" HorizontalOptions="Center"/>
+
+            <Label x:Name="LabProfile" IsVisible="false"  Text="Профиль"  Margin="0,5,0,0" FontFamily="Nunito-SemiBold" TextTransform="Uppercase"   TextColor="Black"  FontSize="22" HorizontalOptions="Center"/>
+            <Label  IsVisible="false"  x:Name="lSurname" Text="Фамилия" Margin="10,5,0,0"   TextColor="Black"  FontSize="22"/>
+            <Label  IsVisible="false"  x:Name="lName" Text="Имя" Margin="10,5,0,0"  TextColor="Black"   FontSize="22"/>
+            <Label  IsVisible="false"  x:Name="lPatronymic" Text="Отчество" Margin="10,5,0,0"   TextColor="Black"    FontSize="22"/>
+            <Label  IsVisible="false"  x:Name="lNumber" Text="Номер телефона" Margin="10,5,0,0"   TextColor="Black"   FontSize="22"/>
+            <Label  IsVisible="false"  x:Name="lEmail" Text="Почта" Margin="10,5,0,0"   TextColor="Black"  FontSize="22"/>
+
+            <Button x:Name="ButtonOrders" Clicked="ButtonOrders_Clicked" Margin="0,20,0,0"  IsVisible="false" Text="История Заказов" CornerRadius="100"/>
+            <Button Clicked="bExit_Clicked"  IsVisible="false" x:Name="bExit" Text="Выход"  CornerRadius="100"/>
+
+        </StackLayout>
+
+       
+
+    </ContentPage.Content>
+</ContentPage>

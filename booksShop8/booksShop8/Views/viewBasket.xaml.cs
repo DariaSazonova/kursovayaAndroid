@@ -15,6 +15,7 @@ namespace booksShop8.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class viewBasket : ContentPage
     {
+        Service service = new Service();
         public viewBasket()
         {
             InitializeComponent();
@@ -25,10 +26,30 @@ namespace booksShop8.Views
             //Write the code of your page here
             base.OnAppearing();
             view();
-            
+
+           
+
         }
-        private async void view()
+        private  void view()
         {
+            foreach (var el in Basket.basketDiction)
+            {
+                if (!App.Current.Properties.ContainsKey((el.Key).ToString()))
+                    App.Current.Properties.Add(el.Key.ToString(), el.Value.ToString());
+                else 
+                    App.Current.Properties[el.Key.ToString()] = Basket.basketDiction[el.Key].ToString();
+            }
+            foreach (var el in App.Current.Properties.ToList())
+            {
+                int n;
+                bool isNumeric = int.TryParse(el.Key, out n);
+
+                if (!Basket.basketDiction.ContainsKey(n))
+                    {
+                        App.Current.Properties.Remove(el);
+                    }
+
+            }
             if (Basket.basketDiction.Count == 0)
             {
                 NullLabelBasket.IsVisible = true;
@@ -36,36 +57,38 @@ namespace booksShop8.Views
             }
             else
             {
+
                 BasketList.IsVisible = true;
-                const string Url = "http://192.168.1.42/myserver/api/books/";
-                HttpClient client = new HttpClient();
-                client.DefaultRequestHeaders.Add("Accept", "application/json");
+                
+                //string result = await service.Get();  // тут json 
+
+                List<Books> viewBooksBasket = new List<Books>();
+               // var js = JArray.Parse(result);
                
-                string result = await client.GetStringAsync(Url);  // тут json 
-
-                List<Books> viewBooks = new List<Books>();
-                var js = JArray.Parse(result);
-                foreach (var b in js)
+                foreach (var bas in Basket.basketDiction.Keys)
                 {
-                    Books addBook = new Books();
-                    addBook.bookId = (int)b["bookId"];
-                    addBook.bookName = (string)b["bookName"];
-                    addBook.bookDescription = (string)b["bookDescription"];
-                    addBook.author = (b["Authors"]["surname"].ToString().Trim() + " " + b["Authors"]["name"].ToString().Trim() + " " + b["Authors"]["patronymic"].ToString().Trim()).ToString();
-                    addBook.bookCost = (decimal)b["bookCost"];
-                    addBook.genre = (string)b["Genre1"]["genre1"];
-                    addBook.bookImg = (byte[])b["bookImg"];
-
-                    if (Basket.basketDiction.Keys.Contains(addBook.bookId))
+                    var b = Catalog.viewBooks.Where(id => id.bookId == bas).FirstOrDefault();
+                    if (b!=null)
                     {
-                        addBook.Quantities = Basket.basketDiction[addBook.bookId];
-                        viewBooks.Add(addBook);
+                        Books addBook = new Books();
+                        addBook.bookId = b.bookId;
+                        addBook.bookName = b.bookName;
+                        addBook.bookDescription = b.bookDescription;
+                        addBook.author = b.author;
+                        addBook.bookCost = b.bookCost;
+                        addBook.genre = b.genre;
+                        addBook.bookImg = b.bookImg;
+                        addBook.status = b.status;
+                        addBook.Quantities = Basket.basketDiction[bas];
+
+                        viewBooksBasket.Add(addBook);
                     }
+                    
 
                 }
 
-                BasketList.ItemsSource = viewBooks;
-                BasketList.BindingContext = viewBooks;
+                BasketList.ItemsSource = viewBooksBasket;
+                BasketList.BindingContext = viewBooksBasket;
                 NullLabelBasket.IsVisible = false;
             }
             
@@ -88,9 +111,14 @@ namespace booksShop8.Views
             if (Basket.basketDiction[id] > 0)
             {
                 Basket.basketDiction[id] += 1;
+                App.Current.Properties[id.ToString()] = Basket.basketDiction[id].ToString();
             }
             else
+            {
                 Basket.basketDiction.Remove(id);
+                App.Current.Properties.Remove(id.ToString());
+            }
+                
             view();
         }
 
@@ -101,12 +129,71 @@ namespace booksShop8.Views
                 if (Basket.basketDiction[id] > 1)
                 {
                     Basket.basketDiction[id] -= 1;
+                    App.Current.Properties[id.ToString()] = Basket.basketDiction[id].ToString();
+
                 }
                 else
+                {
                     Basket.basketDiction.Remove(id);
+                    App.Current.Properties.Remove(id.ToString());
+
+                }
+                   
             }
             view();
             
         }
+
+        private async void Button_ClickedOrder(object sender, EventArgs e)
+        {
+            if (Autorization.profil.id != 0)
+            {
+                if (Basket.basketDiction.Count>0)
+                {
+                    await DisplayAlert("Заказ оформлен", "Спасибо за заказ! Вся подробная информация о заказе находтся в разделе Профиль. История заказов.", "ОK");
+                    Order newOrder = new Order();
+                    newOrder.ClientId = Autorization.profil.id;
+                    newOrder.DateFirst = DateTime.Today;
+                    newOrder.status = "Создан";
+                    await service.AddOrder(newOrder);
+
+                    // тут заполняем orderdetails
+
+                    string resOrdNum = await service.GetOrderNum(Convert.ToInt32(newOrder.ClientId));
+                    var js = JArray.Parse(resOrdNum);
+                    newOrder.ordernum = Convert.ToInt32(js[0]["orderId"]);
+
+                    foreach (var b in Basket.basketDiction)
+                    {
+                        string resBook = await service.GetBook(b.Key);
+                        var js1 = JArray.Parse(resBook);
+
+
+                        OrderDetails newB = new OrderDetails()
+                        {
+                            BookId = b.Key,
+                            Quantities = b.Value,
+                            OrderId = newOrder.ordernum,
+                            Cost = Convert.ToInt32(js1[0]["bookCost"])
+                        };
+                        await service.AddOrderDetails(newB);
+                    }
+                    Basket.basketDiction.Clear();
+                    OnAppearing();
+                }
+                else
+                {
+                    await DisplayAlert("Ошибка", "Корзина пуста. Для офрмления заказа добавьте книги в корзину.", "ОK");
+                }
+               
+            }
+            else
+            {
+                await DisplayAlert("Ошибка", "Для оформления заказа нужно выполнить вход", "ОK");
+            }
+
+
+        }
+            
     }
 }

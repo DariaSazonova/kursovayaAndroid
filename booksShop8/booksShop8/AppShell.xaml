@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:booksShop8.Views"
-       Title="booksShop8"
-       x:Class="booksShop8.AppShell">
+       android:TabbedPage.ToolbarPlacement="Bottom"
+       x:Class="booksShop8.AppShell" 
+       BarBackgroundColor="#7c7b76"
+       BarTextColor="White"
+       Background="White"
+       android:TabbedPage.BarSelectedItemColor="White"
+            android:TabbedPage.BarItemColor="White" 
+            Title="Книжный магазин"
+          
+     >
+
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -11,7 +21,7 @@
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
 
-    <Shell.Resources>
+    <!--<Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="#7c7b76" />
@@ -28,15 +38,30 @@
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
-    </Shell.Resources>
+    </Shell.Resources>-->
 
-    <TabBar>
+    <!--<TabBar x:Name="TabbarM" PropertyChanged="TabBar_PropertyChanged">
+        --><!--<Tab>
+            <ShellContent>
+                <Button Text="nenf"/>
+            </ShellContent>
+        </Tab>--><!--
+
+        <Tab x:Name="MainS"     Title="Главная" Route="FirstMainpage" Icon="home.png">
+            <ShellContent  ContentTemplate="{DataTemplate local:FirstMainPage}" TabIndex="1"/>
+        </Tab>
+        <Tab x:Name="CatalogS"     Icon="catalog.png" Title="Каталог"  >
+            <ShellContent ContentTemplate="{DataTemplate local:Catalog}" TabIndex="2" />
+        </Tab>
         
-        <ShellContent  x:Name="MainS"   Title="Главная" Route="FirstMainpage" Icon="home.png"  ContentTemplate="{DataTemplate local:FirstMainPage}" />
-        <ShellContent x:Name="CatalogS"   Icon="catalog.png" Title="Каталог"  ContentTemplate="{DataTemplate local:Catalog}" />
-        <ShellContent Title="Корзина"   Icon="shopping_basket.png" ContentTemplate="{DataTemplate local:viewBasket}" />
-        <ShellContent Title="Профиль"   Icon="user.png" ContentTemplate="{DataTemplate local:Catalog}" />
-    </TabBar>
+        <ShellContent x:Name="Basket" Title="Корзина"   Icon="shopping_basket.png" ContentTemplate="{DataTemplate local:viewBasket}" TabIndex="3" />
+        <ShellContent x:Name="Profile" Title="Профиль"   Icon="user.png" ContentTemplate="{DataTemplate local:Autorization}" TabIndex="4" />
+    </TabBar>-->
+    <local:FirstMainPage Title="Главная"  Icon="home.png" />
+    <local:Catalog Icon="catalog.png" Title="Каталог" />
+    <local:viewBasket Title="Корзина"   Icon="shopping_basket.png"/>
+    <local:Autorization Title="Профиль"   Icon="user.png"/>
+
 
     <!--
         If you would like to navigate to this content you can do so by calling
@@ -45,4 +70,4 @@
    
 
 
-</Shell>
+</TabbedPage>

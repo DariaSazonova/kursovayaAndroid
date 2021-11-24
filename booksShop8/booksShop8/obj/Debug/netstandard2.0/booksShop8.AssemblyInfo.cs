@@ -11,11 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("booksShop8")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Сазонова Дарья Романовна")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("Приложение книжного магазина.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("booksShop8")]
+[assembly: System.Reflection.AssemblyProductAttribute("Книжный магазин")]
 [assembly: System.Reflection.AssemblyTitleAttribute("booksShop8")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 

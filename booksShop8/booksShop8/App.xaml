@@ -8,11 +8,18 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#ddd5c2</Color>
-        
-            
+
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontFamily" Value="Nunito-Regular"/>
+                
+            </Style>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="#8f746b"></Setter>
+                <Setter Property="FontFamily" Value="Nunito-SemiBold"/>
                 <Setter Property="VisualStateManager.VisualStateGroups">
+                    
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
@@ -29,6 +36,7 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

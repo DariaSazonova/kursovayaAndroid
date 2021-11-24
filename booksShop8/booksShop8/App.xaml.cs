@@ -14,9 +14,14 @@ namespace booksShop8
             InitializeComponent();
 
             //DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
-        }
+            MainPage = new NavigationPage(new AppShell())
+            {
+                BarBackgroundColor = Color.FromHex("#7c7b76"),
+                BarTextColor = Color.White
 
+            };
+        }
+        
         protected override void OnStart()
         {
         }

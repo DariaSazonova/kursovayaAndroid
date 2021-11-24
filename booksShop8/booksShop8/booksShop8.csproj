@@ -3,10 +3,51 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <Authors>Сазонова Дарья Романовна</Authors>
+    <Description>Приложение книжного магазина.</Description>
+    <PackageIcon></PackageIcon>
+    <PackageIconUrl />
+    <Product>Книжный магазин</Product>
+    <PackageId>Книжный магазин</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="fonts\Nunito-Black.ttf" />
+    <None Remove="fonts\Nunito-BlackItalic.ttf" />
+    <None Remove="fonts\Nunito-Bold.ttf" />
+    <None Remove="fonts\Nunito-BoldItalic.ttf" />
+    <None Remove="fonts\Nunito-ExtraBold.ttf" />
+    <None Remove="fonts\Nunito-ExtraBoldItalic.ttf" />
+    <None Remove="fonts\Nunito-ExtraLight.ttf" />
+    <None Remove="fonts\Nunito-ExtraLightItalic.ttf" />
+    <None Remove="fonts\Nunito-Italic.ttf" />
+    <None Remove="fonts\Nunito-Light.ttf" />
+    <None Remove="fonts\Nunito-LightItalic.ttf" />
+    <None Remove="fonts\Nunito-Regular.ttf" />
+    <None Remove="fonts\Nunito-SemiBold.ttf" />
+    <None Remove="fonts\Nunito-SemiBoldItalic.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="fonts\Nunito-Black.ttf" />
+    <EmbeddedResource Include="fonts\Nunito-BlackItalic.ttf" />
+    <EmbeddedResource Include="fonts\Nunito-Bold.ttf" />
+    <EmbeddedResource Include="fonts\Nunito-BoldItalic.ttf" />
+    <EmbeddedResource Include="fonts\Nunito-ExtraBold.ttf" />
+    <EmbeddedResource Include="fonts\Nunito-ExtraBoldItalic.ttf" />
+    <EmbeddedResource Include="fonts\Nunito-ExtraLight.ttf" />
+    <EmbeddedResource Include="fonts\Nunito-ExtraLightItalic.ttf" />
+    <EmbeddedResource Include="fonts\Nunito-Italic.ttf" />
+    <EmbeddedResource Include="fonts\Nunito-Light.ttf" />
+    <EmbeddedResource Include="fonts\Nunito-LightItalic.ttf" />
+    <EmbeddedResource Include="fonts\Nunito-Regular.ttf" />
+    <EmbeddedResource Include="fonts\Nunito-SemiBold.ttf" />
+    <EmbeddedResource Include="fonts\Nunito-SemiBoldItalic.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="System.Text.Json" Version="5.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
@@ -20,16 +61,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\Autorization.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Catalog.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\FirstMainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\OrdersHistory.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\viewBasket.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\viewBook.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\viewOrdersDetails.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

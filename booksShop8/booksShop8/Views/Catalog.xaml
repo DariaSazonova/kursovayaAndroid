@@ -6,8 +6,21 @@
     <ContentPage.Content>
         <StackLayout >
             <SearchBar TextChanged="SearchBook_TextChanged" x:Name="SearchBook"  Margin="-15,0,0,0" />
-            
-            <ListView x:Name="BooksList" ItemsSource="{Binding }"  HasUnevenRows="True"  ItemTapped="BooksList_ItemTapped" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Clicked="ButtonGenre_Clicked" BackgroundColor="White" Text="Все" Grid.Column="0" FontSize="Micro"/>
+                <CollectionView Grid.Column="1" Margin="5,0,0,0" ItemsLayout="HorizontalList"  ItemsSource="{Binding }" x:Name="GenreViews" HeightRequest="35">
+                <CollectionView.ItemTemplate >
+                    <DataTemplate >
+                        <Button BackgroundColor="White" Clicked="ButtonGenre_Clicked"  Text="{Binding Value}" HeightRequest="20"  FontFamily="Nunito-Regular" FontSize="Micro"/>
+                    </DataTemplate >
+                </CollectionView.ItemTemplate >
+            </CollectionView>
+            </Grid>
+            <ListView  x:Name="BooksList" ItemsSource="{Binding }"  HasUnevenRows="True"  ItemTapped="BooksList_ItemTapped" >
                 <ListView.ItemTemplate >
                     <DataTemplate >
                         <ViewCell >
@@ -23,9 +36,9 @@
                                         <RowDefinition Height="Auto"></RowDefinition>
                                         <!--<RowDefinition Height="Auto"></RowDefinition>-->
                                     </Grid.RowDefinitions>
-                                   
-                                    <Label  Grid.Column="0" FontAttributes="Bold" Grid.Row="0" Margin="10,15,0,0" VerticalTextAlignment="Start"  Text="{Binding bookName}" FontSize="18" />
-                                    <Label  Grid.Column="0" FontAttributes="Italic"  Grid.Row="1" Margin="10,0,0,7" VerticalTextAlignment="End"  Text="{Binding author}"  />
+
+                                    <Label  FontFamily="Nunito-Regular" Grid.Column="0" FontAttributes="Bold" Grid.Row="0" Margin="10,15,0,0" VerticalTextAlignment="Start"  Text="{Binding bookName}" FontSize="18" />
+                                    <Label  Grid.Column="0" FontFamily="Nunito-SemiBoldItalic"   Grid.Row="1" Margin="10,0,0,7" VerticalTextAlignment="End"  Text="{Binding author}"  />
                                     <Label VerticalOptions="End" Grid.Column="1" Grid.Row="0" Margin="40,0,0,0" VerticalTextAlignment="Center" Text="{Binding bookCost, StringFormat='{0} ₽' }" FontSize="20"  />
                                     
                                     <Button AutomationId="{Binding bookId}" Clicked="ButtonBasket_Clicked" Text="В корзину" Padding="-20" HeightRequest="30" WidthRequest="50" Grid.Row="1"  Grid.Column="1" Margin="10"/>

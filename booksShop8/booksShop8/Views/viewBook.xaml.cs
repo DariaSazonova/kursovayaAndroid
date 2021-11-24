@@ -46,7 +46,24 @@ namespace booksShop8.Views
             LabelBookDescription.Text = $"Описание: {book.bookDescription}";
             LabelGenre.Text = $"Жанр: {book.genre}";
             ContentP.Title = book.bookName;
+       
 
+        }
+
+        private void ButtonBasket_Clicked(object sender, EventArgs e)
+        {
+            int id = book.bookId;
+            if (Basket.basketDiction.Keys.Contains(id))
+            {
+                Basket.basketDiction[id] += 1;
+                App.Current.Properties[id.ToString()] = Basket.basketDiction[id].ToString();
+            }
+            else
+            {
+                Basket.basketDiction.Add(id, 1);
+                App.Current.Properties.Add(id.ToString(), "1");
+            }
+                
         }
     }
 }

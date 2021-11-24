@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using booksShop8.ViewModels;
 
 namespace booksShop8.Droid
 {
@@ -23,6 +24,35 @@ namespace booksShop8.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+        protected  override void OnStart()
+        {
+ 
+            if (App.Current.Properties.Count > 0)
+            {
+                foreach (var el in App.Current.Properties)
+                {
+                    int n;
+                    bool isNumeric = int.TryParse(el.Key, out n);
+                    if(isNumeric==true)
+                        Basket.basketDiction.Add(Convert.ToInt32(el.Key), Convert.ToInt32(el.Value));
+                    
+                }
+            }
+           
+
+                base.OnStart();
+        }
+        protected override void OnPause()
+        {
+          
+            base.OnPause();
+
+        }
+       
+        protected override void OnResume()
+        {
+            base.OnResume();
         }
     }
 }

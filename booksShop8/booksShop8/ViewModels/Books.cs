@@ -18,7 +18,7 @@ namespace booksShop8.ViewModels
         public decimal bookCost { get; set; }
         public string author { get; set; }
         public string genre { get; set; }
-        public Nullable<int> statusId { get; set; }
+        public string status { get; set; }
         public Nullable<int> bookMark { get; set; }
         public Nullable<int> bookMarkCount { get; set; }
         public Nullable<int> Quantities { get; set; }
