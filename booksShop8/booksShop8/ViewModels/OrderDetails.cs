@@ -8,7 +8,9 @@ namespace booksShop8.ViewModels
     {
         public int OrderId { get; set; }
         public int BookId { get; set; }
+        public string BookName { get; set; }
         public int? Quantities { get; set; }
         public decimal? Cost { get; set; }
+        public decimal? sum { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using booksShop8.ViewModels;
+using booksShop8.Views;
 
 namespace booksShop8.Droid
 {
@@ -25,8 +26,9 @@ namespace booksShop8.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        protected  override void OnStart()
+        protected async  override void OnStart()
         {
+
  
             if (App.Current.Properties.Count > 0)
             {
@@ -34,14 +36,19 @@ namespace booksShop8.Droid
                 {
                     int n;
                     bool isNumeric = int.TryParse(el.Key, out n);
-                    if(isNumeric==true)
+                    if (isNumeric == true)
                         Basket.basketDiction.Add(Convert.ToInt32(el.Key), Convert.ToInt32(el.Value));
+                    else {
+                        Basket.profil.login = el.Key;
+                        Basket.profil.id = Convert.ToInt32(el.Value);
+                    }
                     
                 }
             }
            
 
-                base.OnStart();
+            base.OnStart();
+            
         }
         protected override void OnPause()
         {

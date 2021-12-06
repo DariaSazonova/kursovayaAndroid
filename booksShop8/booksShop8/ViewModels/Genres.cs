@@ -7,5 +7,6 @@ namespace booksShop8.ViewModels
     class Genres
     {
         public static Dictionary<int, String> genres = new Dictionary<int, string>();
+        public static Dictionary<int, String> status = new Dictionary<int, string>();
     }
 }

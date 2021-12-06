@@ -1,7 +1,3 @@
-C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\bin\Debug\netstandard2.0\booksShop8.deps.json
-C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\bin\Debug\netstandard2.0\booksShop8.dll
-C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\bin\Debug\netstandard2.0\ref\booksShop8.dll
-C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\bin\Debug\netstandard2.0\booksShop8.pdb
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\booksShop8.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\AppShell.xaml.g.cs
@@ -9,9 +5,6 @@ C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\booksShop8.AssemblyInfo.cs
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\booksShop8.csproj.CoreCompileInputs.cache
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\XamlC.stamp
-C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\booksShop8.dll
-C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\ref\booksShop8.dll
-C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\booksShop8.pdb
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\Views\Catalog.xaml.g.cs
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\Views\FirstMainPage.xaml.g.cs
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\bin\Debug\netstandard2.0\Mono.Android.dll
@@ -21,3 +14,13 @@ C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\Views\viewBasket.xaml.g.cs
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\Views\Autorization.xaml.g.cs
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\Views\OrdersHistory.xaml.g.cs
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\booksShop8.csproj.AssemblyReference.cache
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\Views\viewOrdersDetails.xaml.g.cs
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\booksShop8.csproj.CopyComplete
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\bin\Debug\netstandard2.0\Книжный магазин.deps.json
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\bin\Debug\netstandard2.0\Книжный магазин.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\bin\Debug\netstandard2.0\ref\Книжный магазин.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\bin\Debug\netstandard2.0\Книжный магазин.pdb
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\Книжный магазин.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\ref\Книжный магазин.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\Книжный магазин.pdb

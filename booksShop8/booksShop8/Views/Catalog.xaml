@@ -11,14 +11,25 @@
                     <ColumnDefinition Width="50"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Clicked="ButtonGenre_Clicked" BackgroundColor="White" Text="Все" Grid.Column="0" FontSize="Micro"/>
-                <CollectionView Grid.Column="1" Margin="5,0,0,0" ItemsLayout="HorizontalList"  ItemsSource="{Binding }" x:Name="GenreViews" HeightRequest="35">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Clicked="ButtonGenre_Clicked" BackgroundColor="White" Text="Все" Grid.Column="0" FontSize="Micro"/>
+                <CollectionView Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" ItemsLayout="HorizontalList"  ItemsSource="{Binding }" x:Name="GenreViews" HeightRequest="35">
                 <CollectionView.ItemTemplate >
                     <DataTemplate >
                         <Button BackgroundColor="White" Clicked="ButtonGenre_Clicked"  Text="{Binding Value}" HeightRequest="20"  FontFamily="Nunito-Regular" FontSize="Micro"/>
                     </DataTemplate >
                 </CollectionView.ItemTemplate >
-            </CollectionView>
+                </CollectionView>
+                <CollectionView HorizontalOptions="Center" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,0" ItemsLayout="HorizontalList"  ItemsSource="{Binding }" x:Name="SatusViews" HeightRequest="35">
+                    <CollectionView.ItemTemplate >
+                        <DataTemplate >
+                            <Button BackgroundColor="White" Clicked="ButtonStatus_Clicked"  Text="{Binding Value}" HeightRequest="20"  FontFamily="Nunito-Regular" FontSize="Micro"/>
+                        </DataTemplate >
+                    </CollectionView.ItemTemplate >
+                </CollectionView>
             </Grid>
             <ListView  x:Name="BooksList" ItemsSource="{Binding }"  HasUnevenRows="True"  ItemTapped="BooksList_ItemTapped" >
                 <ListView.ItemTemplate >

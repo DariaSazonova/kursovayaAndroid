@@ -13,5 +13,5 @@ namespace booksShop8.ViewModels
         public string phone;
         public int id;
     }
-    
+
 }

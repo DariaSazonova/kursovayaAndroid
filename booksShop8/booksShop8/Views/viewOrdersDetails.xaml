@@ -1,9 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="booksShop8.Views.viewOrdersDetails">
+             x:Class="booksShop8.Views.viewOrdersDetails"
+             Background="White" Title="Состав заказа">
     <ContentPage.Content>
         <StackLayout>
+            <BoxView Margin="0,5,0,0" Color="#ddd5c2" CornerRadius="100"/>
+            <Label FontFamily="Nunito-Bold"  FontSize="18" Margin="40,-40,0,0" VerticalOptions="Center" Text="Книга" Grid.Column="0"/>
+            <Label FontFamily="Nunito-Bold"  FontSize="18" Margin="155,-33,0,0" Text="Кол-во" Grid.Column="1"/>
+            <Label FontFamily="Nunito-Bold"   FontSize="18" Margin="245,-33,0,0" Text="Цена" Grid.Column="2"/>
+            <Label FontFamily="Nunito-Bold"   FontSize="18" Margin="325,-33,0,0" Text="Сумма" Grid.Column="3"/>
+
             <ListView  x:Name="BooksList" ItemsSource="{Binding }"  HasUnevenRows="True"  ItemTapped="BooksList_ItemTapped" >
                 <ListView.ItemTemplate >
                     <DataTemplate >
@@ -11,29 +18,27 @@
                             <ViewCell.View>
                                 <Grid  >
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="250"></ColumnDefinition>
-                                        <ColumnDefinition Width="70"/>
-                                        <ColumnDefinition Width="70"/>
-                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="180"></ColumnDefinition>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="90"/>
+                                        <ColumnDefinition Width="90"/>
 
                                     </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                    </Grid.RowDefinitions>
 
-                                    <Label Grid.Column="0" FontAttributes="Bold" Grid.Row="0" Margin="10,15,0,0" VerticalTextAlignment="Start"  Text="{Binding bookName}" FontSize="18" />
-                                    <Label Grid.Column="0" FontFamily="Nunito-SemiBoldItalic"   Grid.Row="1" Margin="10,0,0,7" VerticalTextAlignment="End"  Text="{Binding author}"  />
-                                    <Label x:Name="bookCost" VerticalOptions="End" Grid.Column="1" Grid.Row="0" Margin="40,0,0,0" VerticalTextAlignment="Center" Text="{Binding bookCost, StringFormat='{0} ₽' }" FontSize="20"  />
+                                    <Label HeightRequest="60" Grid.Column="0" FontAttributes="Bold" Margin="10,15,0,0" VerticalTextAlignment="Center"  Text="{Binding BookName}" />
+                                    <Label x:Name="bookCost" VerticalOptions="Center" Grid.Column="2" Margin="0,0,0,0" VerticalTextAlignment="Center" Text="{Binding Cost, StringFormat='{0} ₽' }"  />
+                                    <Label Grid.Column="1" FontFamily="Nunito-SemiBoldItalic"    Margin="0,0,0,7" VerticalTextAlignment="Center"  Text="{Binding Quantities}"  />
+                                   
 
-                                    <Label x:Name="bookQuantity" Grid.Column="2" Text="{Binding quantity}"/>
-                                    <Label BindingContext="{x:Reference Name=bookCost}" Grid.Column="3" Text="{Binding }"/>
+                                    <Label x:Name="bookQuantity" VerticalOptions="Center" Grid.Column="3"  Text="{Binding sum, StringFormat='{0} ₽' }"/>
+                            
                                 </Grid>
                             </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Label Margin="0,0,0,30"  FontAttributes="Bold" FontSize="Medium" VerticalOptions="End" HorizontalOptions="Center" x:Name="LabItog"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

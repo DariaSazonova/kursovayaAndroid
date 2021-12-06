@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using System.Net;
 using System.Text.Json;
+using booksShop8.Views;
 
 namespace booksShop8.ViewModels
 {
@@ -20,6 +21,7 @@ namespace booksShop8.ViewModels
         string UrlOrder = "http://192.168.1.42/myserver3/order/";
         string UrlOrderD = "http://192.168.1.42/myserver3/ordersdetail/";
         string UrlOrderController = "http://192.168.1.42/myserver3/ordercontroller1/";
+        string UrlBookAuthor = "http://192.168.1.42/myserver3/booksauthor/";
         // настройки для десериализации для нечувствительности к регистру символов
 
         // настройка клиента
@@ -42,6 +44,13 @@ namespace booksShop8.ViewModels
         {
             HttpClient client = GetClient();
             string result = await client.GetStringAsync(UrlBook + id.ToString());
+            return result;
+        }
+        //получаем authorbooks
+        public async Task<string> GetBooksAuthor(int id)
+        {
+            HttpClient client = GetClient();
+            string result = await client.GetStringAsync(UrlBookAuthor + id.ToString());
             return result;
         }
         // получаем автора
@@ -118,6 +127,33 @@ namespace booksShop8.ViewModels
             return JsonSerializer.Deserialize<OrderDetails>(
                 await response.Content.ReadAsStringAsync());
         }
+
+        // обновляем книгу
+        public async Task<BookforUpdating> Update(BookforUpdating book)
+        {
+            HttpClient client = GetClient();
+            var js = new StringContent(
+                    JsonSerializer.Serialize(book),
+                    Encoding.UTF8, "application/json");
+            var response = await client.PutAsync(UrlBook,js
+                );
+
+            if (response.StatusCode != HttpStatusCode.OK)
+                return null;
+
+            return JsonSerializer.Deserialize<BookforUpdating>(
+                await response.Content.ReadAsStringAsync());
+        }
+
+       
+        // получаем состав заказа 
+        public async Task<string> GetOrderDetails(string id)
+        {
+            HttpClient client = GetClient();
+            string result = await client.GetStringAsync(UrlOrderD + id.ToString());
+            return result;
+        }
+
 
     }
 }

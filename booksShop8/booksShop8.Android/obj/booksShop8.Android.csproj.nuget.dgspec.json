@@ -135,6 +135,10 @@
             "sqlite-net-pcl": {
               "target": "Package",
               "version": "[1.8.116, )"
+            },
+            "xunit.assert": {
+              "target": "Package",
+              "version": "[2.4.1, )"
             }
           },
           "imports": [

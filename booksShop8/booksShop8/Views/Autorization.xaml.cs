@@ -17,7 +17,7 @@ namespace booksShop8.Views
     {
         Service service = new Service();
         
-        public static profile profil = new profile();
+        
 
         public Autorization()
         {
@@ -30,19 +30,19 @@ namespace booksShop8.Views
             base.OnAppearing();
             
 
-            foreach (var el in App.Current.Properties.ToList())
-            {
-                int n = -1;
-                bool isNumeric = int.TryParse(el.Key, out n);
-                if (isNumeric == false)
-                {
-                    profil.login = el.Key;
-                    profil.id = Convert.ToInt32(el.Value);
+            //foreach (var el in App.Current.Properties.ToList())
+            //{
+            //    int n = -1;
+            //    bool isNumeric = int.TryParse(el.Key, out n);
+            //    if (isNumeric == false)
+            //    {
+            //        profil.login = el.Key;
+            //        profil.id = Convert.ToInt32(el.Value);
                     
-                }
-            }
+            //    }
+            //}
 
-            if (String.IsNullOrWhiteSpace(profil.login))
+            if (String.IsNullOrWhiteSpace(Basket.profil.login))
             {
                 LabLog.IsVisible = true;
                 loginEntry.IsVisible = true;
@@ -88,18 +88,18 @@ namespace booksShop8.Views
         }
         private async void client()
         {
-            string resultBook = await service.Getclient(profil.login);
+            string resultBook = await service.Getclient(Basket.profil.login);
             var js = JArray.Parse(resultBook);
-            profil.name = (string)js[0]["name"];
-            profil.surname = (string)js[0]["surname"];
-            profil.patronymic = (string)js[0]["patronymic"];
-            profil.phone = (string)js[0]["phone"];
+            Basket.profil.name = (string)js[0]["name"];
+            Basket.profil.surname = (string)js[0]["surname"];
+            Basket.profil.patronymic = (string)js[0]["patronymic"];
+            Basket.profil.phone = (string)js[0]["phone"];
 
-            lSurname.Text = $"Фамилия: {profil.surname}";
-            lName.Text = $"Имя:{profil.name}";
-            lPatronymic.Text = $"Отчество:{profil.patronymic}";
-            lNumber.Text = $"Номер телефона:{profil.phone}";
-            lEmail.Text = $"Почта:{profil.login}";
+            lSurname.Text = $"Фамилия: {Basket.profil.surname}";
+            lName.Text = $"Имя:{Basket.profil.name}";
+            lPatronymic.Text = $"Отчество:{Basket.profil.patronymic}";
+            lNumber.Text = $"Номер телефона:{Basket.profil.phone}";
+            lEmail.Text = $"Почта:{Basket.profil.login}";
 
         }
 
@@ -131,6 +131,8 @@ namespace booksShop8.Views
                         string resultBook = await service.Getclient(login);
                         var js1 = JArray.Parse(resultBook);
                         App.Current.Properties.Add(login, (string)js1[0]["clientId"]);
+                        Basket.profil.login = login;
+                        Basket.profil.id = Convert.ToInt32((string)js1[0]["clientId"]);
                         OnAppearing();
 
                     } 
@@ -147,18 +149,24 @@ namespace booksShop8.Views
 
         private void bExit_Clicked(object sender, EventArgs e)
         {
-            App.Current.Properties.Remove(profil.login);
-            profil.name = "";
-            profil.surname = "";
-            profil.patronymic = "";
-            profil.phone ="";
-            profil.login = "";
-            OnAppearing();
+            App.Current.Properties.Remove(Basket.profil.login);
+            Basket.profil.name = "";
+            Basket.profil.surname = "";
+            Basket.profil.patronymic = "";
+            Basket.profil.phone ="";
+            Basket.profil.login = "";
+            Basket.profil.id = 0;
+           OnAppearing();
         }
 
         private async void ButtonOrders_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new OrdersHistory());
+        }
+
+        private void RegButton_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

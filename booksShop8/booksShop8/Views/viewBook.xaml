@@ -8,15 +8,20 @@
         <ScrollView>
         <StackLayout  >
                 <Image x:Name="ImageBook" HeightRequest="400" Grid.Column="0"/>
+                <Label  FontFamily="Nunito-Light"  x:Name="Labelquantity" FontSize="Small"/>
                 <Label  FontFamily="Nunito-ExtraBold"  x:Name="LabelBookName" FontSize="Medium" />
                 <Label FontFamily="Nunito-Light"  x:Name="LabelAuthor" FontSize="Medium" />
                 <Label FontFamily="Nunito-ExtraBold" x:Name="LabelBookCost" FontSize="Medium" Text="{Binding bookCost, StringFormat='Цена{0} ₽' }"/>
                 <Button  FontFamily="Nunito-ExtraBold" CornerRadius="10" x:Name="ButtonBasket" HeightRequest="60" WidthRequest="60" Text="Добавить в корзину" Clicked="ButtonBasket_Clicked"/>
                 <Label FontFamily="Nunito-Regular"   x:Name="LabelBookDescription" Text="{Binding bookDescription, StringFormat='Описание: {0}' }"/>
                 <Label   x:Name="LabelGenre" Text="{Binding genre, StringFormat='Жанр: {0}' }"/>
-            <!--что-то для оценки-->
+                <Label Margin="0,10,10,10"   x:Name="LabelMark" Text="{Binding genre, StringFormat='Оценка: {0}' }"/>
+                <!--что-то для оценки-->
+                <Button Clicked="ButtonMark_Clicked"  Margin="200,-50,0,7" FontSize="12" Text="Оценить" CornerRadius="100" HorizontalOptions="Center"/>
 
-        </StackLayout>
+
+
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

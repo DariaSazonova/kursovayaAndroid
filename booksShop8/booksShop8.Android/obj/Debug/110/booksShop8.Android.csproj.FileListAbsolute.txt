@@ -5,8 +5,6 @@ C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\bin\Debug\com
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\bin\Debug\com.companyname.booksshop8-Signed.aab
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\bin\Debug\com.companyname.booksshop8-Signed.apk
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\bin\Debug\com.companyname.booksshop8-Signed.apk.idsig
-C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\bin\Debug\booksShop8.dll
-C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\bin\Debug\booksShop8.pdb
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\MonoAndroid,Version=v11.0.AssemblyAttributes.cs
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\build.props
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\adb.props
@@ -592,3 +590,18 @@ C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\lp\89\jl\files.cache
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\res\drawable\mainicon.png
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\booksShop8.Android.csproj.CopyComplete
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\System.Collections.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\System.Diagnostics.Debug.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\System.Globalization.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\System.Linq.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\System.ObjectModel.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\System.Reflection.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\System.Reflection.Extensions.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\System.Runtime.Extensions.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\System.Text.RegularExpressions.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\System.Threading.Tasks.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\xunit.assert.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\bin\Debug\Книжный магазин.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\bin\Debug\Книжный магазин.pdb
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\Книжный магазин.dll
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\Книжный магазин.pdb

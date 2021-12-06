@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Книжный магазин")]
-[assembly: System.Reflection.AssemblyTitleAttribute("booksShop8")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Книжный магазин")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Создано классом WriteCodeFragment MSBuild.

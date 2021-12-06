@@ -10,7 +10,7 @@
             <Label  IsVisible="false" x:Name="LabPass" Text="Пароль" FontSize="25" VerticalOptions="Start"  HorizontalOptions="CenterAndExpand" />
             <Entry  IsVisible="false" TextColor="Black" Background="White" x:Name="passwordEntry" IsPassword="True"   VerticalOptions="Start"  HorizontalOptions="CenterAndExpand"  WidthRequest="300"  />
             <Button  IsVisible="false"  x:Name="InButton" Clicked="InButton_ClickedAsync"  TextColor="Black" BackgroundColor="White"  CornerRadius="100" Text="Вход" HorizontalOptions="Center" />
-            <Button  IsVisible="false" x:Name="RegButton" TextColor="Black"  BackgroundColor="White" CornerRadius="100" Text="Регистрация" HorizontalOptions="Center"/>
+            <Button  IsVisible="false" x:Name="RegButton" Clicked="RegButton_Clicked" TextColor="Black"  BackgroundColor="White" CornerRadius="100" Text="Регистрация" HorizontalOptions="Center"/>
 
             <Label x:Name="LabProfile" IsVisible="false"  Text="Профиль"  Margin="0,5,0,0" FontFamily="Nunito-SemiBold" TextTransform="Uppercase"   TextColor="Black"  FontSize="22" HorizontalOptions="Center"/>
             <Label  IsVisible="false"  x:Name="lSurname" Text="Фамилия" Margin="10,5,0,0"   TextColor="Black"  FontSize="22"/>

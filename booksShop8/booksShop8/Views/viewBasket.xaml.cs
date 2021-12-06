@@ -19,18 +19,19 @@ namespace booksShop8.Views
         public viewBasket()
         {
             InitializeComponent();
+
             
         }
         protected override void OnAppearing()
         {
             //Write the code of your page here
             base.OnAppearing();
-            view();
+            viewB();
 
-           
+       
 
         }
-        private  void view()
+        private  void viewB()
         {
             foreach (var el in Basket.basketDiction)
             {
@@ -67,7 +68,7 @@ namespace booksShop8.Views
                
                 foreach (var bas in Basket.basketDiction.Keys)
                 {
-                    var b = Catalog.viewBooks.Where(id => id.bookId == bas).FirstOrDefault();
+                    var b = Basket.viewBooks.Where(id => id.bookId == bas).FirstOrDefault();
                     if (b!=null)
                     {
                         Books addBook = new Books();
@@ -118,8 +119,8 @@ namespace booksShop8.Views
                 Basket.basketDiction.Remove(id);
                 App.Current.Properties.Remove(id.ToString());
             }
-                
-            view();
+
+            viewB();
         }
 
         private void ButtonMin_Clicked(object sender, EventArgs e)
@@ -140,46 +141,98 @@ namespace booksShop8.Views
                 }
                    
             }
-            view();
+            viewB();
             
         }
 
         private async void Button_ClickedOrder(object sender, EventArgs e)
         {
-            if (Autorization.profil.id != 0)
+            if (Basket.profil.id != 0)
             {
                 if (Basket.basketDiction.Count>0)
                 {
-                    await DisplayAlert("Заказ оформлен", "Спасибо за заказ! Вся подробная информация о заказе находтся в разделе Профиль. История заказов.", "ОK");
-                    Order newOrder = new Order();
-                    newOrder.ClientId = Autorization.profil.id;
-                    newOrder.DateFirst = DateTime.Today;
-                    newOrder.status = "Создан";
-                    await service.AddOrder(newOrder);
-
-                    // тут заполняем orderdetails
-
-                    string resOrdNum = await service.GetOrderNum(Convert.ToInt32(newOrder.ClientId));
-                    var js = JArray.Parse(resOrdNum);
-                    newOrder.ordernum = Convert.ToInt32(js[0]["orderId"]);
+                    List<OrderDetails> listOr = new List<OrderDetails>();
+                    List<BookforUpdating> listB = new List<BookforUpdating>();
 
                     foreach (var b in Basket.basketDiction)
                     {
                         string resBook = await service.GetBook(b.Key);
                         var js1 = JArray.Parse(resBook);
-
-
-                        OrderDetails newB = new OrderDetails()
+                        OrderDetails newB = new OrderDetails();
+                        var book = Basket.viewBooks.Where(id => id.bookId == b.Key).First();
+                        
+                        if (b.Value <= book.Quantities)
                         {
-                            BookId = b.Key,
-                            Quantities = b.Value,
-                            OrderId = newOrder.ordernum,
-                            Cost = Convert.ToInt32(js1[0]["bookCost"])
-                        };
-                        await service.AddOrderDetails(newB);
+                            newB.BookId = b.Key;
+                            newB.Quantities = b.Value;
+                            //newB.OrderId = newOrder.ordernum;
+                            newB.Cost = Convert.ToInt32(js1[0]["bookCost"]);
+                            listOr.Add(newB);
+                            //await service.AddOrderDetails(newB);
+
+                            BookforUpdating bookUpdate = new BookforUpdating
+                            {
+                                bookId = book.bookId,
+                                bookName = book.bookName,
+                                bookDescription = book.bookDescription,
+                                bookCost = book.bookCost,
+                                bookMark = Convert.ToInt32(book.bookMark),
+                                bookMarkCount = Convert.ToInt32(book.bookMarkCount),
+                                bookImg = book.bookImg,
+                                quantities = Convert.ToInt32(book.Quantities)- b.Value,
+                                genre = Genres.genres.Where(v => v.Value == book.genre).Select(s => s.Key).FirstOrDefault(),
+                                statusId = Genres.status.Where(v => v.Value == book.status).Select(s => s.Key).FirstOrDefault()
+                            };
+                            if (bookUpdate.statusId == 0) bookUpdate.statusId = null;
+                            listB.Add(bookUpdate);
+
+                        }
+                        else if(book.Quantities==0)
+                        {
+                            string res = await DisplayActionSheet($"{book.bookName.Trim()} нет в наличии", "Отменить заказ", null, "Оформить заказ с изменениями");
+                            if(res== "Отменить заказ")
+                            {
+                                listOr.Clear();
+                                listB.Clear();
+                                break;
+                            }
+                        } 
                     }
-                    Basket.basketDiction.Clear();
-                    OnAppearing();
+                    if (listOr.Count > 0)
+                    {
+
+
+
+                        foreach (var o in listB)
+                        {
+                            await service.Update(o);
+                        }
+
+                        Order newOrder = new Order();
+                        newOrder.ClientId = Basket.profil.id;
+                        newOrder.DateFirst = DateTime.Today;
+                        newOrder.status = "Создан";
+                        await service.AddOrder(newOrder);
+
+                        string resOrdNum = await service.GetOrderNum(Convert.ToInt32(newOrder.ClientId));
+                        var js = JArray.Parse(resOrdNum);
+                        newOrder.ordernum = Convert.ToInt32(js[0]["orderId"]);
+                        foreach (var o in listOr)
+                        {
+                            o.OrderId = newOrder.ordernum;
+                            await service.AddOrderDetails(o);
+                        }
+                        await DisplayAlert("Заказ оформлен", "Спасибо за заказ! Вся подробная информация о заказе находтся в разделе Профиль. История заказов.", "ОK");
+                        Basket.basketDiction.Clear();
+                       
+                        OnAppearing();
+                    }
+                    else
+                    {
+                        await DisplayAlert("Сообщение", "Не удалось оформить заказ, так как нет товаров в наличии", "ОK");
+                    }
+                    listOr.Clear();
+                    listB.Clear();
                 }
                 else
                 {

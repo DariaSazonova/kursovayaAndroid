@@ -3,7 +3,6 @@ public class MonoPackageManager_Resources {
 	public static String[] Assemblies = new String[]{
 		/* We need to ensure that "booksShop8.Android.dll" comes first in this list. */
 		"booksShop8.Android.dll",
-		"booksShop8.dll",
 		"FormsViewGroup.dll",
 		"Microsoft.Bcl.AsyncInterfaces.dll",
 		"Newtonsoft.Json.dll",
@@ -64,6 +63,8 @@ public class MonoPackageManager_Resources {
 		"Xamarin.Forms.Xaml.dll",
 		"Xamarin.Google.Android.Material.dll",
 		"Xamarin.Google.Guava.ListenableFuture.dll",
+		"xunit.assert.dll",
+		"Книжный магазин.dll",
 	};
 	public static String[] Dependencies = new String[]{
 	};

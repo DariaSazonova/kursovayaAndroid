@@ -21,76 +21,111 @@ namespace booksShop8.Views
     public partial class Catalog : ContentPage
     {
         Service service = new Service();
-        string serchS = "";
-        public static List<Books> viewBooks = new List<Books>();
+        string serchS = "viewParametr";
+       
 
         public Catalog()
         {
             InitializeComponent();
-            serchS = "";
+            serchS = "viewParametr";
+            
         }
-        protected override void OnAppearing()
+        protected async  override void OnAppearing()
         {
+            
             //Write the code of your page here
             base.OnAppearing();
-            view(serchS);
+            
+            GenreViews.BindingContext = Genres.genres.Values;
+            GenreViews.ItemsSource = Genres.genres;
+            SatusViews.BindingContext = Genres.status.Values;
+            SatusViews.ItemsSource = Genres.status;
+            BooksList.ItemsSource = Basket.viewBooks;
+            BooksList.BindingContext = Basket.viewBooks;
+            var r = await view(serchS);
         }
-        private async void view(string viewParametr)
+        public  async Task<List<Books>> view(string viewParametr)
         {
             string resultBook = await service.Get();
-            
             var js = JArray.Parse(resultBook);
-
-           
             foreach (var b in js)
             {
-                var check = viewBooks.Where(book => book.bookId == (int)b["bookId"]).FirstOrDefault();
+                var check = Basket.viewBooks.Where(book => book.bookId == (int)b["bookId"]).FirstOrDefault();
+                Books addBook;
                 if (check == null)
                 {
+                    addBook = new Books();
+                }
+                else
+                {
+                    addBook = Basket.viewBooks.Where(boo => boo.bookId == (int)b["bookId"]).FirstOrDefault();
+                }
 
-
-                    Books addBook = new Books();
                     addBook.bookId = (int)b["bookId"];
-                    addBook.bookName = (string)b["bookName"];
+                    addBook.bookName = (string)b["bookName"].ToString().Trim();
                     addBook.bookDescription = (string)b["bookDescription"];
                     addBook.bookCost = (decimal)b["bookCost"];
                     addBook.bookImg = (byte[])b["bookImg"];
+                    addBook.bookMark = (double)b["bookMark"];
+                    addBook.bookMarkCount = (double)b["bookMarkCount"];
+                    addBook.Quantities = (int)b["quantities"];
 
-                    string resulAuthor = await service.GetAuthor((int)b["authorId"]);
+                    string resulAuthor = await service.GetBooksAuthor((int)b["bookId"]);
                     var jsAuthor = JArray.Parse(resulAuthor);
-                    addBook.author = (jsAuthor[0]["surname"].ToString().Trim() + " " + jsAuthor[0]["name"].ToString().Trim() + " " + jsAuthor[0]["patronymic"].ToString().Trim()).ToString();
+                    string resauthor = "";
+                    foreach(var a in jsAuthor)
+                    {
+                        string result = await service.GetAuthor((int)a["autorId"]);
+                        var jsA = JArray.Parse(result);
+                        
+                        resauthor += (jsA[0]["surname"].ToString().Trim() + " " + jsA[0]["name"].ToString().Trim() + " " + jsA[0]["patronymic"].ToString().Trim()).ToString() + "  ";
+                        if (!Basket.authorDictionary.ContainsKey((int)jsA[0]["authorId"]))
+                            Basket.authorDictionary.Add((int)jsA[0]["authorId"], resauthor);
+                    }
 
+                    addBook.author = resauthor;//(jsAuthor[0]["surname"].ToString().Trim() + " " + jsAuthor[0]["name"].ToString().Trim() + " " + jsAuthor[0]["patronymic"].ToString().Trim()).ToString();
+                    
+                    
                     string resulGenre = await service.GetGenre((int)b["genre"]);
                     var jsGenre = JArray.Parse(resulGenre);
-                    addBook.genre = (string)jsGenre[0]["genre1"];
+                    addBook.genre = ((string)jsGenre[0]["genre1"]).Trim();
+                    
+
 
                     if ((string)b["statusId"] != null)
                     {
                         string resulStatus = await service.GetBookStatus((int)b["statusId"]);
                         var jsStatus = JArray.Parse(resulStatus);
-                        addBook.status = (string)jsStatus[0]["statusName"];
+                        addBook.status = ((string)jsStatus[0]["statusName"]).Trim();
+                        if (!Genres.status.ContainsKey((int)b["statusId"]))
+                            Genres.status.Add((int)b["statusId"], addBook.status);
+
                     }
                     else addBook.status = null;
 
-
-
+                   
                     if (!Genres.genres.ContainsKey((int)jsGenre[0]["genreId"]))
-                        Genres.genres.Add((int)jsGenre[0]["genreId"], (string)jsGenre[0]["genre1"]);
-                    if (viewParametr == "")
-                        viewBooks.Add(addBook);
-                    else
-                    {
-                        if (addBook.bookName.ToUpper().Contains(viewParametr.ToUpper()) || addBook.author.ToUpper().Contains(viewParametr.ToUpper()) || addBook.genre.ToUpper().Contains(viewParametr.ToUpper()) || addBook.bookDescription.ToUpper().Contains(viewParametr.ToUpper()) || addBook.status.ToUpper().Contains(viewParametr.ToUpper()))
-                        {
-                            viewBooks.Add(addBook);
-                        }
-                    }
+                        Genres.genres.Add((int)jsGenre[0]["genreId"], addBook.genre);
+                    if (viewParametr == "viewParametr" && check == null)
+                        Basket.viewBooks.Add(addBook);
+                    //else
+                    //{
+                    //    if (addBook.bookName.ToUpper().Contains(viewParametr.ToUpper()) || addBook.author.ToUpper().Contains(viewParametr.ToUpper()) || addBook.genre.ToUpper().Contains(viewParametr.ToUpper()) || addBook.bookDescription.ToUpper().Contains(viewParametr.ToUpper()))
+                    //    {
+                    //        Basket.viewBooks.Add(addBook);
+                    //    }
+                    //}
                 }
-            }
+            
             GenreViews.BindingContext = Genres.genres.Values;
             GenreViews.ItemsSource = Genres.genres;
-            BooksList.ItemsSource = viewBooks;
-            BooksList.BindingContext = viewBooks;
+            SatusViews.BindingContext = Genres.status.Values;
+            SatusViews.ItemsSource = Genres.status;
+            BooksList.ItemsSource = Basket.viewBooks;
+            BooksList.BindingContext = Basket.viewBooks;
+            return Basket.viewBooks;
+
+
         }
 
         public async void BooksList_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -133,8 +168,8 @@ namespace booksShop8.Views
             //if(String.IsNullOrWhiteSpace(searchStr))
             //view("");
             //else view(searchStr);
-            BooksList.ItemsSource = viewBooks.Where(b=>b.bookName.ToUpper().Contains(searchStr.ToUpper()));
-            BooksList.BindingContext = viewBooks.Where(b => b.bookName.ToUpper().Contains(searchStr.ToUpper()));
+            BooksList.ItemsSource = Basket.viewBooks.Where(b=>b.bookName.ToUpper().Contains(searchStr.ToUpper())|| b.author.ToUpper().Contains(searchStr.ToUpper())|| b.bookDescription.ToUpper().Contains(searchStr.ToUpper()));
+            BooksList.BindingContext = Basket.viewBooks.Where(b => b.bookName.ToUpper().Contains(searchStr.ToUpper()) || b.author.ToUpper().Contains(searchStr.ToUpper()) || b.bookDescription.ToUpper().Contains(searchStr.ToUpper()));
 
 
         }
@@ -144,20 +179,24 @@ namespace booksShop8.Views
             var genre = (sender as Button).Text;
             if (genre == "Все")
             {
-                view(serchS);
+                BooksList.ItemsSource = Basket.viewBooks;
+                BooksList.BindingContext = Basket.viewBooks;
             }
             else
             {
-                BooksList.ItemsSource = viewBooks.Where(b => b.genre.ToUpper().Contains(genre.ToUpper()));
-                BooksList.BindingContext = viewBooks.Where(b => b.genre.ToUpper().Contains(genre.ToUpper()));
+                BooksList.ItemsSource = Basket.viewBooks.Where(b => b.genre.ToUpper().Contains(genre.ToUpper()));
+                BooksList.BindingContext = Basket.viewBooks.Where(b => b.genre.ToUpper().Contains(genre.ToUpper()));
             }
             
 
         }
-        public  void newBookList()
+    
+
+        private void ButtonStatus_Clicked(object sender, EventArgs e)
         {
-            BooksList.ItemsSource = viewBooks.Where(b => b.status=="новинка");
-            BooksList.BindingContext = viewBooks.Where(b => b.status == "новинка");
+            var status = (sender as Button).Text;
+            BooksList.ItemsSource = Basket.viewBooks.Where(b => b.status==status);
+            BooksList.BindingContext = Basket.viewBooks.Where(b => b.status == status);
         }
     }
 }

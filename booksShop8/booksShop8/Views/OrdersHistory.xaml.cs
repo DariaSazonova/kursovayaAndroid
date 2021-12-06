@@ -31,7 +31,7 @@ namespace booksShop8.Views
         {
             if (OrdersList.Count == 0)
             {
-                string resOrders = await service.GetOrderNum(Autorization.profil.id);
+                string resOrders = await service.GetOrderNum(Basket.profil.id);
                 var js1 = JArray.Parse(resOrders);
                 foreach (var el in js1)
                 {
@@ -52,10 +52,10 @@ namespace booksShop8.Views
             if (e.Item == null) return;
 
             if (sender is ListView lv) lv.SelectedItem = null;
-            Order selectedBook = e.Item as Order;
-            if (selectedBook != null)
+            Order selectedOrder = e.Item as Order;
+            if (selectedOrder != null)
             {
-                //await Navigation.PushAsync();
+                await Navigation.PushAsync(new viewOrdersDetails(selectedOrder.ordernum));
             }
 
         }
