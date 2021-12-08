@@ -166,7 +166,7 @@ namespace booksShop8.Views
 
         private void RegButton_Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushAsync(new Registaration());
         }
     }
 }

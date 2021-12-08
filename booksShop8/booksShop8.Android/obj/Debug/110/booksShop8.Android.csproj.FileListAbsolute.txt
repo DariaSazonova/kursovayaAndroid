@@ -605,3 +605,6 @@ C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\bin\Debug\К�
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\bin\Debug\Книжный магазин.pdb
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\Книжный магазин.dll
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\assets\Книжный магазин.pdb
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\res\drawable\splash_screen.xml
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\android\src\crc649a10b7d5ee12f7ad\SplashActivity.java
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8.Android\obj\Debug\110\res\drawable\spinner_png.png

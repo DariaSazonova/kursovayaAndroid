@@ -22,6 +22,7 @@ namespace booksShop8.ViewModels
         string UrlOrderD = "http://192.168.1.42/myserver3/ordersdetail/";
         string UrlOrderController = "http://192.168.1.42/myserver3/ordercontroller1/";
         string UrlBookAuthor = "http://192.168.1.42/myserver3/booksauthor/";
+        string UrlBookuser = "http://192.168.1.42/myserver3/user/";
         // настройки для десериализации для нечувствительности к регистру символов
 
         // настройка клиента
@@ -44,6 +45,13 @@ namespace booksShop8.ViewModels
         {
             HttpClient client = GetClient();
             string result = await client.GetStringAsync(UrlBook + id.ToString());
+            return result;
+        }
+        // получаем userов 
+        public async Task<string> GetUser(string id)
+        {
+            HttpClient client = GetClient();
+            string result = await client.GetStringAsync(UrlBookuser + id);
             return result;
         }
         //получаем authorbooks
@@ -112,6 +120,38 @@ namespace booksShop8.ViewModels
             return JsonSerializer.Deserialize<Order>(
                 await response.Content.ReadAsStringAsync());
         }
+
+        // добавляем новый user
+        public async Task<Order> AddUser(User user)
+        {
+            HttpClient client = GetClient();
+            var response = await client.PostAsync(UrlUser,
+                new StringContent(
+                    JsonSerializer.Serialize(user),
+                    Encoding.UTF8, "application/json"));
+
+            if (response.StatusCode != HttpStatusCode.OK)
+                return null;
+
+            return JsonSerializer.Deserialize<Order>(
+                await response.Content.ReadAsStringAsync());
+        }
+        // добавляем новый client
+        public async Task<Order> AddClient(Client Client)
+        {
+            HttpClient client = GetClient();
+            var response = await client.PostAsync(UrlClient,
+                new StringContent(
+                    JsonSerializer.Serialize(Client),
+                    Encoding.UTF8, "application/json"));
+
+            if (response.StatusCode != HttpStatusCode.OK)
+                return null;
+
+            return JsonSerializer.Deserialize<Order>(
+                await response.Content.ReadAsStringAsync());
+        }
+
         // добавляем новый заказ в OrderDetails
         public async Task<OrderDetails> AddOrderDetails(OrderDetails OrderDetails)
         {

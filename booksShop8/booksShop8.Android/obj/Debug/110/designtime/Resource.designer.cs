@@ -10286,34 +10286,37 @@ namespace booksShop8.Droid
 			public const int secondary_text_disabled_material_light = 2131034313;
 			
 			// aapt resource value: 0x7F0500CA
-			public const int switch_thumb_disabled_material_dark = 2131034314;
+			public const int splash_background = 2131034314;
 			
 			// aapt resource value: 0x7F0500CB
-			public const int switch_thumb_disabled_material_light = 2131034315;
+			public const int switch_thumb_disabled_material_dark = 2131034315;
 			
 			// aapt resource value: 0x7F0500CC
-			public const int switch_thumb_material_dark = 2131034316;
+			public const int switch_thumb_disabled_material_light = 2131034316;
 			
 			// aapt resource value: 0x7F0500CD
-			public const int switch_thumb_material_light = 2131034317;
+			public const int switch_thumb_material_dark = 2131034317;
 			
 			// aapt resource value: 0x7F0500CE
-			public const int switch_thumb_normal_material_dark = 2131034318;
+			public const int switch_thumb_material_light = 2131034318;
 			
 			// aapt resource value: 0x7F0500CF
-			public const int switch_thumb_normal_material_light = 2131034319;
+			public const int switch_thumb_normal_material_dark = 2131034319;
 			
 			// aapt resource value: 0x7F0500D0
-			public const int test_mtrl_calendar_day = 2131034320;
+			public const int switch_thumb_normal_material_light = 2131034320;
 			
 			// aapt resource value: 0x7F0500D1
-			public const int test_mtrl_calendar_day_selected = 2131034321;
+			public const int test_mtrl_calendar_day = 2131034321;
 			
 			// aapt resource value: 0x7F0500D2
-			public const int tooltip_background_dark = 2131034322;
+			public const int test_mtrl_calendar_day_selected = 2131034322;
 			
 			// aapt resource value: 0x7F0500D3
-			public const int tooltip_background_light = 2131034323;
+			public const int tooltip_background_dark = 2131034323;
+			
+			// aapt resource value: 0x7F0500D4
+			public const int tooltip_background_light = 2131034324;
 			
 			static Color()
 			{
@@ -11800,16 +11803,22 @@ namespace booksShop8.Droid
 			public const int shopping_basket = 2131165328;
 			
 			// aapt resource value: 0x7F070091
-			public const int test_custom_background = 2131165329;
+			public const int spinner_png = 2131165329;
 			
 			// aapt resource value: 0x7F070092
-			public const int tooltip_frame_dark = 2131165330;
+			public const int splash_screen = 2131165330;
 			
 			// aapt resource value: 0x7F070093
-			public const int tooltip_frame_light = 2131165331;
+			public const int test_custom_background = 2131165331;
 			
 			// aapt resource value: 0x7F070094
-			public const int user = 2131165332;
+			public const int tooltip_frame_dark = 2131165332;
+			
+			// aapt resource value: 0x7F070095
+			public const int tooltip_frame_light = 2131165333;
+			
+			// aapt resource value: 0x7F070096
+			public const int user = 2131165334;
 			
 			static Drawable()
 			{
@@ -14316,7 +14325,7 @@ namespace booksShop8.Droid
 			public const int MaterialAlertDialog_MaterialComponents_Title_Text_CenterStacked = 2131689712;
 			
 			// aapt resource value: 0x7F0F00F1
-			public const int MyTheme = 2131689713;
+			public const int MyTheme_Splash = 2131689713;
 			
 			// aapt resource value: 0x7F0F00F2
 			public const int Platform_AppCompat = 2131689714;

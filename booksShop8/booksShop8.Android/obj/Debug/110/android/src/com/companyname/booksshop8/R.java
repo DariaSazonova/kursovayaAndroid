@@ -6029,16 +6029,17 @@ public final class R {
     public static final int secondary_text_default_material_light=0x7f0500c7;
     public static final int secondary_text_disabled_material_dark=0x7f0500c8;
     public static final int secondary_text_disabled_material_light=0x7f0500c9;
-    public static final int switch_thumb_disabled_material_dark=0x7f0500ca;
-    public static final int switch_thumb_disabled_material_light=0x7f0500cb;
-    public static final int switch_thumb_material_dark=0x7f0500cc;
-    public static final int switch_thumb_material_light=0x7f0500cd;
-    public static final int switch_thumb_normal_material_dark=0x7f0500ce;
-    public static final int switch_thumb_normal_material_light=0x7f0500cf;
-    public static final int test_mtrl_calendar_day=0x7f0500d0;
-    public static final int test_mtrl_calendar_day_selected=0x7f0500d1;
-    public static final int tooltip_background_dark=0x7f0500d2;
-    public static final int tooltip_background_light=0x7f0500d3;
+    public static final int splash_background=0x7f0500ca;
+    public static final int switch_thumb_disabled_material_dark=0x7f0500cb;
+    public static final int switch_thumb_disabled_material_light=0x7f0500cc;
+    public static final int switch_thumb_material_dark=0x7f0500cd;
+    public static final int switch_thumb_material_light=0x7f0500ce;
+    public static final int switch_thumb_normal_material_dark=0x7f0500cf;
+    public static final int switch_thumb_normal_material_light=0x7f0500d0;
+    public static final int test_mtrl_calendar_day=0x7f0500d1;
+    public static final int test_mtrl_calendar_day_selected=0x7f0500d2;
+    public static final int tooltip_background_dark=0x7f0500d3;
+    public static final int tooltip_background_light=0x7f0500d4;
   }
   public static final class dimen {
     public static final int abc_action_bar_content_inset_material=0x7f060000;
@@ -6529,10 +6530,12 @@ public final class R {
     public static final int notification_tile_bg=0x7f07008e;
     public static final int notify_panel_notification_icon_bg=0x7f07008f;
     public static final int shopping_basket=0x7f070090;
-    public static final int test_custom_background=0x7f070091;
-    public static final int tooltip_frame_dark=0x7f070092;
-    public static final int tooltip_frame_light=0x7f070093;
-    public static final int user=0x7f070094;
+    public static final int spinner_png=0x7f070091;
+    public static final int splash_screen=0x7f070092;
+    public static final int test_custom_background=0x7f070093;
+    public static final int tooltip_frame_dark=0x7f070094;
+    public static final int tooltip_frame_light=0x7f070095;
+    public static final int user=0x7f070096;
   }
   public static final class id {
     public static final int ALT=0x7f080000;
@@ -7351,7 +7354,7 @@ public final class R {
     public static final int MaterialAlertDialog_MaterialComponents_Title_Panel_CenterStacked=0x7f0f00ee;
     public static final int MaterialAlertDialog_MaterialComponents_Title_Text=0x7f0f00ef;
     public static final int MaterialAlertDialog_MaterialComponents_Title_Text_CenterStacked=0x7f0f00f0;
-    public static final int MyTheme=0x7f0f00f1;
+    public static final int MyTheme_Splash=0x7f0f00f1;
     public static final int Platform_AppCompat=0x7f0f00f2;
     public static final int Platform_AppCompat_Light=0x7f0f00f3;
     public static final int Platform_MaterialComponents=0x7f0f00f4;

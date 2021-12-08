@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -28,6 +28,7 @@ namespace booksShop8.Views
         Catalog c = new Catalog();
         Service service = new Service();
         List<popularBooks> popularBooks = new List<popularBooks>();
+        IOrderedEnumerable<popularBooks> sorted;
         //public static List<Books> Bookslist = new List<Books>();
         public FirstMainPage()
         {
@@ -38,32 +39,51 @@ namespace booksShop8.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            IOrderedEnumerable<popularBooks> sorted;
-            var r = await c.view("viewParametr");
-            if (popularBooks == null || popularBooks.Count != Basket.viewBooks.Count)
+            if (popularBooks.Count == 0 || popularBooks.Count != Basket.viewBooks.Count)
             {
-                foreach (var b in Basket.viewBooks)
-                {
-                    popularBooks pop = new popularBooks();
-                    pop.bookName = b.bookName;
-                    pop.bookId = b.bookId;
-                    pop.author = b.author;
-                    Image img = new Image();
-                    var stream1 = new MemoryStream(b.bookImg);
-                    img.Source = ImageSource.FromStream(() => stream1);
-                    pop.img = img;
-                    pop.bookMark = b.bookMark;
-                    pop.bookMarkCount = b.bookMarkCount;
-                    popularBooks.Add(pop);
-                }
-
-               sorted = popularBooks.OrderByDescending(it => it.bookMark / it.bookMarkCount);
+                loading.IsVisible = true;
+                var wait = await refresh();
                 CollectionViewMain.ItemsSource = sorted.Take(10);
                 CollectionViewMain.BindingContext = sorted.Take(10);
             }
-           
+            loading.IsVisible = false;
+            ICommand refreshCommand = new Command(async () =>
+            {
+                // IsRefreshing is true
+                // Refresh data here
+                var wait = await refresh();
+                CollectionViewMain.ItemsSource = sorted.Take(10);
+                CollectionViewMain.BindingContext = sorted.Take(10);
+                refreshView.IsRefreshing = false;
+            });
+            refreshView.Command = refreshCommand;
+
         }
 
+        async Task<List<Books>> refresh()
+        {
+            popularBooks.Clear();
+            if(sorted!=null)
+                sorted.ToList().Clear();
+            var r = await c.view("viewParametr");
+            foreach (var b in Basket.viewBooks)
+            {
+                popularBooks pop = new popularBooks();
+                pop.bookName = b.bookName;
+                pop.bookId = b.bookId;
+                pop.author = b.author;
+                Image img = new Image();
+                var stream1 = new MemoryStream(b.bookImg);
+                img.Source = ImageSource.FromStream(() => stream1);
+                pop.img = img;
+                pop.bookMark = b.bookMark;
+                pop.bookMarkCount = b.bookMarkCount;
+                popularBooks.Add(pop);
+            }
+
+            sorted = popularBooks.OrderByDescending(it => it.bookMark / it.bookMarkCount);
+            return r;
+        }
 
         private async void  CollectionViewMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

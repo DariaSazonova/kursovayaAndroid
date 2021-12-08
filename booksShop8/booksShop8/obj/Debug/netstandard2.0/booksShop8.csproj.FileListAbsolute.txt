@@ -24,3 +24,4 @@ C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\bin\Debug\netstandard
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\Книжный магазин.dll
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\ref\Книжный магазин.dll
 C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\Книжный магазин.pdb
+C:\Users\123\source\repos\booksShop8\booksShop8\booksShop8\obj\Debug\netstandard2.0\Views\Registaration.xaml.g.cs

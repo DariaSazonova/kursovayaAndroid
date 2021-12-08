@@ -74,9 +74,11 @@ namespace booksShop8.Views
             LabelGenre.Text = $"Жанр: {book.genre}";
             ContentP.Title = book.bookName;
             var m = book.bookMark / book.bookMarkCount;
-            var mark = Math.Round(Convert.ToDecimal(m), 1).ToString();
+            string mark;
             if (book.bookMark == 0) 
                 mark = "Нет оценок";
+            else 
+               mark = Math.Round(Convert.ToDecimal(m), 1).ToString();
             LabelMark.Text= $"Оценка: {mark}";
 
 

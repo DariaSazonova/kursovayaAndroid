@@ -9,7 +9,8 @@ using booksShop8.Views;
 
 namespace booksShop8.Droid
 {
-    [Activity(Label = "booksShop8", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+    //[Activity(Label = "booksShop8", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+    [Activity(Label = "booksShop8", Icon = "@mipmap/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -26,10 +27,10 @@ namespace booksShop8.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        protected async  override void OnStart()
+        protected   override void OnStart()
         {
 
- 
+            base.OnStart();
             if (App.Current.Properties.Count > 0)
             {
                 foreach (var el in App.Current.Properties)
@@ -37,18 +38,19 @@ namespace booksShop8.Droid
                     int n;
                     bool isNumeric = int.TryParse(el.Key, out n);
                     if (isNumeric == true)
-                        Basket.basketDiction.Add(Convert.ToInt32(el.Key), Convert.ToInt32(el.Value));
-                    else {
+                    {
+                        if (!Basket.basketDiction.ContainsKey(Convert.ToInt32(el.Key)))
+                            Basket.basketDiction.Add(Convert.ToInt32(el.Key), Convert.ToInt32(el.Value));
+                    }
+                    else
+                    {
                         Basket.profil.login = el.Key;
                         Basket.profil.id = Convert.ToInt32(el.Value);
                     }
                     
                 }
             }
-           
 
-            base.OnStart();
-            
         }
         protected override void OnPause()
         {

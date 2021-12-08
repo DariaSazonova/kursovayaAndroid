@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="booksShop8.Views.Registaration" Title="Регистрация" BackgroundColor="White">
+    <ContentPage.Content>
+        
+            <Grid Margin="10,0,0,0">
+                <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+           
+            <Label VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Margin="0,10,0,0" Text="Логин(Email)" FontSize="20"/>
+            <Entry TextChanged="EntryLogin_TextChanged"  x:Name="EntryLogin"  VerticalOptions="Center" Grid.Row="0" Grid.Column="1"/>
+            <Label VerticalOptions="Center" Grid.Row="1" Grid.Column="0" Text="Пароль" FontSize="20"/>
+            <Entry AutomationId="p1"  TextChanged="EntryPassword_TextChanged" x:Name="EntryPassword" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" IsPassword="True"/>
+            <Label FontFamily="Nunito-Italic" TextColor="Gray" FontSize="12" Grid.Row="2" Grid.ColumnSpan="2" Text="Пароль должен содержать от 8 до 16 символов верхнего, нижнего регистра и цифры"/>
+            <Label  VerticalOptions="Center" Grid.Row="3" Grid.Column="0" Text="Повторите пароль" FontSize="20"/>
+            <Entry AutomationId="p2" TextChanged="EntryPassword_TextChanged"  x:Name="EntryPasswordAgain" VerticalOptions="Center" Grid.Row="3" Grid.Column="1" IsPassword="True"/>
+            <Label VerticalOptions="Center" Grid.Row="4" Grid.Column="0" Text="Фамилия" FontSize="20" />
+            <Entry TextColor="Black" x:Name="EntrySurname" VerticalOptions="Center" Grid.Row="4" Grid.Column="1"/>
+            <Label VerticalOptions="Center" Grid.Row="5" Grid.Column="0" Text="Имя" FontSize="20"/>
+            <Entry TextColor="Black" x:Name="EntryName" VerticalOptions="Center" Grid.Row="5" Grid.Column="1"/>
+            <Label VerticalOptions="Center" Grid.Row="6" Grid.Column="0" Text="Отчество" FontSize="20"/>
+            <Entry TextColor="Black" x:Name="EntryPatronymic" VerticalOptions="Center" Grid.Row="6" Grid.Column="1"/>
+            <Label VerticalOptions="Center" Grid.Row="7" Grid.Column="0" Text="Номер телефона" FontSize="20" />
+            <Entry MaxLength="11" TextChanged="EntryPhone_TextChanged" Keyboard="Numeric" x:Name="EntryPhone" VerticalOptions="Center" Grid.Row="7" Grid.Column="1"/>
+            <Button Clicked="Button_Clicked" Margin="0,20,0,0" Text="Зарегистрироваться" Grid.Row="8" Grid.ColumnSpan="2" CornerRadius="100" HorizontalOptions="Center"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

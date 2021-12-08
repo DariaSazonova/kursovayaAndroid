@@ -1,6 +1,9 @@
 booksShop8.Droid.MainActivity, booksShop8.Android;crc649a10b7d5ee12f7ad.MainActivity
 booksShop8.Droid.MainActivity;crc649a10b7d5ee12f7ad.MainActivity
 booksshop8.droid.MainActivity;crc649a10b7d5ee12f7ad.MainActivity
+booksShop8.Droid.SplashActivity, booksShop8.Android;crc649a10b7d5ee12f7ad.SplashActivity
+booksShop8.Droid.SplashActivity;crc649a10b7d5ee12f7ad.SplashActivity
+booksshop8.droid.SplashActivity;crc649a10b7d5ee12f7ad.SplashActivity
 AndroidX.Activity.IOnBackPressedDispatcherOwner, Xamarin.AndroidX.Activity;androidx.activity.OnBackPressedDispatcherOwner
 AndroidX.Activity.IOnBackPressedDispatcherOwner;androidx.activity.OnBackPressedDispatcherOwner
 androidx.activity.OnBackPressedDispatcherOwner;androidx.activity.OnBackPressedDispatcherOwner
